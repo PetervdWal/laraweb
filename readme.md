@@ -32,14 +32,14 @@ add the following:
   </Directory>
 </VirtualHost>
 ```
-## Step 6
+## Step 7
 open your host file on your windows pc with admin rights editor:
 `C:/Windows/System32/drivers/etc/hosts`
 add the following
 ```
 127.0.0.1 laravelweb.dev
 ```
-##Step 7
+## Step 8
 Run xammp apache and sql server.
 Go to laravelweb.dev and its running!
 
