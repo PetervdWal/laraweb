@@ -6,20 +6,28 @@
  * Time: 18:33
  */
 ?>
-<form method="POST" action="/auth/login">
-    {!! csrf_field() !!}
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="{{old('emmail')}}">
+@extends('layouts.default')
+@section('content')
+    <div class="col-md-8 col-md-offset-2">
+        <form class="center" method="POST" action="/auth/login">
+            {!! csrf_field() !!}
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" id="email" value="{{old('emmail')}}">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password">
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="checkbox" name="remember"> Remember me
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-default" type="submit">Login</button>
+            </div>
+        </form>
     </div>
-    <div>
-        Password
-        <input type="password" name="password" id="password">
-    </div>
-    <div>
-        <input type="checkbox" name="remember"> Remember me
-    </div>
-    <div>
-        <button type="submit">Login</button>
-    </div>
-</form>
+@stop
