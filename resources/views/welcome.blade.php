@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Laravel</title>
-
+        <link href="{{ asset('css/app.css') }}" type="text/css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
         <style>
@@ -42,4 +42,6 @@
             </div>
         </div>
     </body>
+    <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" href="{{ asset('js/bootstrap.min.js') }}"></script>
 </html>

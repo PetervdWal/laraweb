@@ -8,9 +8,9 @@
 ?>
 <form method="POST" action="/auth/login">
     {!! csrf_field() !!}
-    <div>
-        Email
-        <input type="email" name="email" value="{{old('emmail')}}">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="{{old('emmail')}}">
     </div>
     <div>
         Password
