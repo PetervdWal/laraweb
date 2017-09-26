@@ -1,0 +1,10 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: peter
+ * Date: 25-9-17
+ * Time: 21:07
+ */
+?>
+
+<div>My Health footer</div>
