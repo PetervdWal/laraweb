@@ -14,6 +14,7 @@
             mdl-layout--fixed-header">
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
+            @yield('headerTitle')
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
@@ -31,13 +32,17 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">My Health</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href=""><i class="material-icons">rowing</i>  My profile</a>
+            <a class="mdl-navigation__link" href="/profile"><i class="material-icons">rowing</i>  My profile</a>
             <a class="mdl-navigation__link" href=""><i class="material-icons">account_balance_wallet</i>  My bills</a>
             <a class="mdl-navigation__link" href=""><i class="material-icons">insert_chart</i>  My measurements</a>
             <a class="mdl-navigation__link" href="auth/login/"><i class="material-icons">exit_to_app</i>  Logout</a>
         </nav>
     </div>
     <main class="mdl-layout__content">
-        <div class="page-content"><!-- Your content goes here --></div>
+        <div class="page-content">
+            @yield('content')
+            <!-- Your content goes here -->
+
+        </div>
     </main>
 </div>
