@@ -6,50 +6,162 @@
  * Time: 1:48 PM
  */
 ?>
-@extends('layouts.default')
-@section('content')
-    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">Welcome</h2>
-        </div>
-        <div class="mdl-card__supporting-text">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Material</th>
-                    <th>Quantity</th>
-                    <th>Unit price</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-                    <td>25</td>
-                    <td>$2.90</td>
-                </tr>
-                <tr>
-                    <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-                    <td>50</td>
-                    <td>$1.25</td>
-                </tr>
-                <tr>
-                    <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-                    <td>10</td>
-                    <td>$2.35</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Get Started
-            </a>
-        </div>
-        <div class="mdl-card__menu">
-            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                <i class="material-icons">share</i>
-            </button>
-        </div>
-    </div>
+<!--        TODO: Use variables instead of static names-->
 
-    @stop
+        <!DOCTYPE html>
+<html>
+@extends('includes/navbar')
+<head>
+    <link rel="stylesheet" type="text/css" href="mdlDatePicker.scss">
+    @section('headerTitle')
+        <h4>
+            Profile settings
+        </h4>
+
+@stop
+@include('layouts.default')
+<body>
+@section('content')
+    <form class = "">
+        {{--Personal section--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <h5 class = "title">
+                Personal data
+            </h5>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        {{--Name Textfield--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="name">
+                <label class="mdl-textfield__label" for="name">Name...</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        {{--Birthdate picker--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="birthdate">
+                <label class="mdl-textfield__label" for="birthdate">Birthdate...</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        {{--Customer number--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="customerNumber">
+                <label class="mdl-textfield__label" for="customerNumber">Customer Number...</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        {{--BSN--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="bsnNumber">
+                <label class="mdl-textfield__label" for="bsnNumber">BSN...</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+{{--Contact gegevens--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <h5 class = "title">
+                Contact data
+            </h5>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        {{--Address Textfield--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="address">
+                <label class="mdl-textfield__label" for="address">Address...</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        {{--Phonenumber--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="phoneNumber">
+                <label class="mdl-textfield__label" for="phoneNumber">Phonenumber...</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        {{--Emailfield--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" id="emailAddress">
+                <label class="mdl-textfield__label" for="emailAddress">Email address...</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <h5 class = "title">
+                Insurance data
+            </h5>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="insuranceCompany">
+                <label class="mdl-textfield__label" for="insuranceCompany">Insurance Company...</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="policyNumber">
+                <label class="mdl-textfield__label" for="policyNumber">Policy number...</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="insuranceType">
+                <label class="mdl-textfield__label" for="insuranceType">Insurance type...</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="excess">
+                <label class="mdl-textfield__label" for="excess">Excess...</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id = "login">
+                Save
+            </button>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+    </form>
+@stop
+</body>
+</head>
+<script type="text/javascript" href="{{ asset('js/mdlDatePicker.js') }}"></script>
+</html>
