@@ -3,3 +3,15 @@
 Homestead.yaml
 Homestead.json
 .env
+
+\.idea/deployment\.xml
+
+\.idea/laraweb\.iml
+
+\.idea/modules\.xml
+
+\.idea/php\.xml
+
+\.idea/vcs\.xml
+
+\.idea/workspace\.xml

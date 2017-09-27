@@ -23,3 +23,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/dashboard', function() {
     return view('welcome');
 });
+Route::get('api/v1/users/getUser/{email}/{password}', 'API\V1\UserApiController@getLogin');
+
+Route::get('/profile', function() {
+    return view('/layouts/profile');
+});

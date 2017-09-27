@@ -8,28 +8,51 @@
 ?>
 @extends('layouts.default')
 @section('content')
-    <div class="col-md-8 col-md-offset-2">
-        <form method="POST" action="/auth/register">
-            {!! csrf_field() !!}
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
+    <form method="POST" action="/auth/register">
+        {!! csrf_field() !!}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="registerName">
+                <label class="mdl-textfield__label" for="name">Name...</label>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" id="registerEmail">
+                <label class="mdl-textfield__label" for="registerEmail">Email...</label>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control">
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" id="registerPassword">
+                <label class="mdl-textfield__label" for="registerPassword">Password...</label>
             </div>
-            <div class="form-group">
-                <label for="password_confirmation">Confirm Password</label>
-                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" id="registerPasswordConfirmation">
+                <label class="mdl-textfield__label" for="registerPasswordConfirmation">Confirm Password...</label>
             </div>
-            <div class="form-group">
-                <button type="submit">Register</button>
-            </div>
-        </form>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id = "register">
+                Register
+            </button>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+    </form>
     </div>
 @stop
