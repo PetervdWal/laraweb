@@ -20,7 +20,7 @@
             <div class="mdl-grid">
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="email">
+                    <input class="mdl-textfield__input" type="email" id="email">
                     <label class="mdl-textfield__label" for="email">Email...</label>
                 </div>
                 <div class="mdl-layout-spacer"></div>
