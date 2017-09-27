@@ -7,4 +7,3 @@
  */
 ?>
 
-<div>My Health footer</div>
