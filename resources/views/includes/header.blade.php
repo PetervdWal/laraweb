@@ -9,4 +9,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My Health</title>
 <link href="{{ asset('css/app.css') }}" type="text/css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
