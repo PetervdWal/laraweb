@@ -14,7 +14,10 @@
 <head>
     <link rel="stylesheet" type="text/css" href="mdlDatePicker.scss">
     @section('headerTitle')
-        Profile settings
+        <h4>
+            Profile settings
+        </h4>
+
 @stop
 @include('layouts.default')
 <body>
@@ -149,6 +152,13 @@
             <div class="mdl-layout-spacer"></div>
         </div>
 
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id = "login">
+                Save
+            </button>
+            <div class="mdl-layout-spacer"></div>
+        </div>
     </form>
 @stop
 </body>
