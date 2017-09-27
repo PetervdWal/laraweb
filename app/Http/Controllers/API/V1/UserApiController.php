@@ -25,4 +25,12 @@ class UserApiController extends Controller
             return response()->json("{'message': 'Incorrect user and password'}");
         }
     }
+    public function getUser($email) {
+        $user = DB::table('users as u')
+            ->select('u.name', 'u.email', 'u.street', 'u.home_number', 'u.phone_number', 'h.name as HealthName')
+            ->leftJoin('health_insurance_companies as h', 'u.health_insurance_id', '=', 'h.id')
+            ->where('email', $email)->get();
+
+        return response()->json($user);
+    }
 }
