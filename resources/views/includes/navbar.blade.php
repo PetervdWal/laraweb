@@ -14,7 +14,6 @@
             mdl-layout--fixed-header">
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
-            @yield('headerTitle')
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
@@ -39,10 +38,6 @@
         </nav>
     </div>
     <main class="mdl-layout__content">
-        <div class="page-content">
-            @yield('content')
-            <!-- Your content goes here -->
-
-        </div>
+        <div class="page-content">@yield('content')</div>
     </main>
 </div>
