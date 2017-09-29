@@ -46,7 +46,7 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="name" value="{{$user->name}}">
+                <input class="mdl-textfield__input" type="text" id="name" value="{{$user->name}}" disabled>
                 <label class="mdl-textfield__label" for="name">Name...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -56,7 +56,8 @@
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{--NTH make datepicker for date_of_birth--}}
-                <input class="mdl-textfield__input" type="text" id="birthdate" value="{{substr($user->date_of_birth,0,10)}}">
+                <input class="mdl-textfield__input" type="text" id="birthdate"
+                       value="{{substr($user->date_of_birth,0,10)}}" disabled>
                 <label class="mdl-textfield__label" for="birthdate">Birthdate...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -66,7 +67,8 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="bsnNumber" value="{{$user->bsn}}">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="bsnNumber"
+                       value="{{$user->bsn}}" disabled>
                 <label class="mdl-textfield__label" for="bsnNumber">BSN...</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -125,7 +127,7 @@
                 <input class="mdl-textfield__input" type="text" id="insuranceCompany"
                        value="@if(!emptyArray($healthInsurance))
                                     {{$healthInsurance}}
-                       @endif">
+                       @endif" disabled>
                 <label class="mdl-textfield__label" for="insuranceCompany">Insurance Company...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -135,7 +137,7 @@
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="policyNumber"
-                    value="{{$user->policy_number}}">
+                    value="{{$user->policy_number}}" disabled>
                 <label class="mdl-textfield__label" for="policyNumber">Policy number...</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -145,7 +147,8 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="insuranceType" value="{{$user->insurance_type}}">
+                <input class="mdl-textfield__input" type="text" id="insuranceType" value="{{$user->insurance_type}}"
+                       disabled>
                 <label class="mdl-textfield__label" for="insuranceType">Insurance Type</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -155,7 +158,8 @@
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="excess"
-                value="{{$user->excess}}">
+                value="{{$user->excess}}"
+                        disabled>
                 <label class="mdl-textfield__label" for="excess">Excess...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
