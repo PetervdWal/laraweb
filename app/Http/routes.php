@@ -31,5 +31,6 @@ Route::get('/profile', function() {
 
 //API Calls
 Route::get('api/v1/users/getUser/{email}/', 'API\V1\UserApiController@getUser');
-Route::get('api/v1/users/getUser/{email}/{password}', 'API\V1\UserApiController@getLogin');
+Route::post('api/v1/users/getUser/', 'API\V1\UserApiController@getLogin');
+Route::post('api/v1/users/getUser/login', 'API\V1\UserApiController@login');
 

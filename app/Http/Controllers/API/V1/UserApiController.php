@@ -11,6 +11,8 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 class UserApiController extends Controller
 {
     /**
@@ -20,7 +22,10 @@ class UserApiController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function getLogin($email, $password){
+    public function getLogin(Request $request){
+
+        $email = $request->email;
+        $password = $request->password;
         if(Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = DB::table('users')->select('name', 'email', 'street', 'home_number', 'phone_number')
                 ->where('email', $email)->get();
@@ -29,6 +34,17 @@ class UserApiController extends Controller
 
         } else {
             return response()->json("{'message': 'Incorrect user and password'}");
+        }
+    }
+
+    public function login(Request $request){
+        $email = $request->email;
+        $password = $request->password;
+        if(Auth::attempt(['email' => $email, 'password' => $password])) {
+            return redirect()->intended('/');
+        }
+        else {
+            Return 'incorrect password';
         }
     }
 

@@ -15,12 +15,12 @@
     @stop
 
 @section('content')
-        <form class="center" method="POST" action="/auth/login">
+        <form class="center" method="POST" action="/api/v1/users/getUser/login">
             {!! csrf_field() !!}
             <div class="mdl-grid">
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="email" id="email">
+                    <input class="mdl-textfield__input" type="email" id="email" name="email">
                     <label class="mdl-textfield__label" for="email">Email...</label>
                 </div>
                 <div class="mdl-layout-spacer"></div>
@@ -28,7 +28,7 @@
             <div class="mdl-grid">
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="password" id="password">
+                    <input class="mdl-textfield__input" type="password" id="password" name="password">
                     <label class="mdl-textfield__label" for="password">Password...</label>
                 </div>
                 <div class="mdl-layout-spacer"></div>
