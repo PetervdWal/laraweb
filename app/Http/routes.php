@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,9 +27,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/dashboard', function () {
     return view('welcome');
 });
-Route::get('/profile', function() {
-    return view('profile');
-});
+Route::get('/profile', 'ProfileController@showProfile')->middleware('auth');
 
 //API Calls
 Route::get('api/v1/users/getUser/{email}/', 'API\V1\UserApiController@getUser');

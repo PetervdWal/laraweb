@@ -10,7 +10,7 @@
 
         <!DOCTYPE html>
 <html>
-@extends('includes/navbar')
+@extends('includes.navbar')
 <head>
     <link rel="stylesheet" type="text/css" href="mdlDatePicker.scss">
     @section('headerTitle')
@@ -31,12 +31,22 @@
             </h5>
             <div class="mdl-layout-spacer"></div>
         </div>
-
+        {{--Customer number--}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
+                       id="customerNumber" value="{{$user->user_number}}" disabled>
+                <label class="mdl-textfield__label" for="customerNumber">Customer Number</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
         {{--Name Textfield--}}
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="name">
+                <input class="mdl-textfield__input" type="text" id="name" value="{{$user->name}}">
                 <label class="mdl-textfield__label" for="name">Name...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -45,26 +55,18 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="birthdate">
+                {{--NTH make datepicker for date_of_birth--}}
+                <input class="mdl-textfield__input" type="text" id="birthdate" value="{{substr($user->date_of_birth,0,10)}}">
                 <label class="mdl-textfield__label" for="birthdate">Birthdate...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
         </div>
-        {{--Customer number--}}
-        <div class="mdl-grid">
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="customerNumber">
-                <label class="mdl-textfield__label" for="customerNumber">Customer Number...</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-            </div>
-            <div class="mdl-layout-spacer"></div>
-        </div>
+
         {{--BSN--}}
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="bsnNumber">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="bsnNumber" value="{{$user->bsn}}">
                 <label class="mdl-textfield__label" for="bsnNumber">BSN...</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -82,7 +84,8 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="address">
+                <input class="mdl-textfield__input" type="text" id="address" value="{{$user->street.' '
+                .$user->home_number}}">
                 <label class="mdl-textfield__label" for="address">Address...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -91,7 +94,8 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="phoneNumber">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="phoneNumber"
+                    value="{{$user->phone_number}}">
                 <label class="mdl-textfield__label" for="phoneNumber">Phonenumber...</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -101,7 +105,7 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="emailAddress">
+                <input class="mdl-textfield__input" type="email" id="emailAddress" value="{{$user->email}}">
                 <label class="mdl-textfield__label" for="emailAddress">Email address...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -118,7 +122,10 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="insuranceCompany">
+                <input class="mdl-textfield__input" type="text" id="insuranceCompany"
+                       value="@if(!emptyArray($healthInsurance))
+                                    {{$healthInsurance}}
+                       @endif">
                 <label class="mdl-textfield__label" for="insuranceCompany">Insurance Company...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -127,7 +134,8 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="policyNumber">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="policyNumber"
+                    value="{{$user->policy_number}}">
                 <label class="mdl-textfield__label" for="policyNumber">Policy number...</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -137,8 +145,8 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="insuranceType">
-                <label class="mdl-textfield__label" for="insuranceType">Insurance type...</label>
+                <input class="mdl-textfield__input" type="text" id="insuranceType" value="{{$user->insurance_type}}">
+                <label class="mdl-textfield__label" for="insuranceType">Insurance Type</label>
             </div>
             <div class="mdl-layout-spacer"></div>
         </div>
@@ -146,7 +154,8 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="excess">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="excess"
+                value="{{$user->excess}}">
                 <label class="mdl-textfield__label" for="excess">Excess...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
