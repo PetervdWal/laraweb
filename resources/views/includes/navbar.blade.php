@@ -4,31 +4,40 @@
  * User: peter
  * Date: 25-9-17
  * Time: 21:05
- */?>
+ *
+ */
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">My Health</a>
+?>
+<!-- The drawer is always open in large screens. The header is always shown,
+  even in small screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+            mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                <label class="mdl-button mdl-js-button mdl-button--icon"
+                       for="fixed-header-drawer-exp">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" name="sample"
+                           id="fixed-header-drawer-exp">
+                </div>
+            </div>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/dashboard">Dashboard<span class="sr-only">(current)</span></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/auth/login">Login</a></li>
-                <li><a href="/auth/register">Register</a></li>
-            </ul>
-
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">My Health</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/profile"><i class="material-icons">rowing</i>  My profile</a>
+            <a class="mdl-navigation__link" href=""><i class="material-icons">account_balance_wallet</i>  My bills</a>
+            <a class="mdl-navigation__link" href=""><i class="material-icons">insert_chart</i>  My measurements</a>
+            <a class="mdl-navigation__link" href="auth/login/"><i class="material-icons">exit_to_app</i>  Logout</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="page-content">@yield('content')</div>
+    </main>
+</div>
