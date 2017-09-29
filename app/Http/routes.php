@@ -21,8 +21,18 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
+
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/dashboard', function () {
     return view('welcome');
 });
+Route::get('/profile', function() {
+    return view('profile');
+});
+
+//API Calls
+Route::get('api/v1/users/getUser/{email}/', 'API\V1\UserApiController@getUser');
+Route::post('api/v1/users/getUser/', 'API\V1\UserApiController@getLogin');
+Route::post('api/v1/users/getUser/login', 'API\V1\UserApiController@login');
+
