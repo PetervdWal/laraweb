@@ -4,12 +4,14 @@
 
     <div class="col-md-8 col-md-offset-2 ">
 
-        <table class="">
+        <table class="table">
+            <thead class="thead">
             <tr>
                 @foreach($columns as $column)
-                    <td>{{$column}}</td>
+                    <th>{{$column}}</th>
                 @endforeach
             </tr>
+            </thead>
 
             @if($rows != NULL)
                 @foreach($rows as $row)
