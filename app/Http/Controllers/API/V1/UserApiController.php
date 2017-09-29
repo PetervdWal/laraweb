@@ -24,11 +24,11 @@ class UserApiController extends Controller
 
     public function getLogin(Request $request){
 
-        $email = $request->email;
+        $userNumber = $request->userNumber;
         $password = $request->password;
-        if(Auth::attempt(['email' => $email, 'password' => $password])) {
+        if(Auth::attempt(['user_number' => $userNumber, 'password' => $password])) {
             $user = DB::table('users')->select('name', 'email', 'street', 'home_number', 'phone_number')
-                ->where('email', $email)->get();
+                ->where('email', $userNumber)->get();
 
             return response()->json($user);
 
@@ -37,10 +37,14 @@ class UserApiController extends Controller
         }
     }
 
+    public function editUser(Request $request){
+
+    }
+
     public function login(Request $request){
-        $email = $request->email;
+        $userNumber = $request->userNumber;
         $password = $request->password;
-        if(Auth::attempt(['email' => $email, 'password' => $password])) {
+        if(Auth::attempt(['user_number' => $userNumber, 'password' => $password])) {
             return redirect()->intended('/');
         }
         else {

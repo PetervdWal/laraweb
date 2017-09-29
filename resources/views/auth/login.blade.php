@@ -5,6 +5,7 @@
  * Date: 25-9-17
  * Time: 18:33
  */
+
 ?>
 @extends('layouts.default')
 
@@ -20,8 +21,8 @@
             <div class="mdl-grid">
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="email" id="email" name="email">
-                    <label class="mdl-textfield__label" for="email">Email...</label>
+                    <input class="mdl-textfield__input" type="text" id="userNumber" name="userNumber">
+                    <label class="mdl-textfield__label" for="userNumber">User number...</label>
                 </div>
                 <div class="mdl-layout-spacer"></div>
             </div>

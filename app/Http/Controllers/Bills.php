@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+//TODO: Bills rename to BillsController
 class Bills extends Controller
 {
     /**
@@ -66,6 +67,7 @@ class Bills extends Controller
         $warning = "";
         $rows = NULL;
         $COLUMNNAMES = ['treatment code', 'treatment description', 'total price', 'user price', 'user paid', 'insurance price', 'insurance paid', 'treatment given at'];
+        //Distinct
         $bill = DB::table('bills')->select()->where('id', $id)->first();
         $user = Auth::user();
 
