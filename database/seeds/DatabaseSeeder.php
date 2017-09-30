@@ -13,8 +13,23 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-        // $this->call(UserTableSeeder::class);
+        DB::table('health_insurance_companies')->insert([
+            'name' => "Cigna"
+        ]);
+        DB::table('users')->insert([
+            'name' => 'test',
+            'email' => 'test@test.nl',
+            'password' => bcrypt("test"),
+            'user_number' => 12,
+            'street' => 'teststreet',
+            'date_of_birth' => new DateTime('1994-08-08'),
+            'bsn' => '035246029',
+            'phone_number' => "061235476",
+            'health_insurance_id' => 1,
+            'policy_number' => 123,
+            'insurance_type' => "Basic",
+            'excess' =>  500.00
+        ]);
 
         Model::reguard();
     }
