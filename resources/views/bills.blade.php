@@ -13,16 +13,16 @@
     </tr>
     </thead>
     <tbody>
-    @if($bills != NULL)
+
         @foreach($bills as $bill)
             <tr>
                 @foreach($bill as $variable)
-                    <td m>{{$variable}}</td>
+                    <td>{{$variable}}</td>
                 @endforeach
                 <td><a href="{{URL::to('/bills/'.$bill->id)}}" class="btn-default">details</a></td>
             </tr>
         @endforeach
-    @endif
+
     </tbody>
 </table>
 @stop
