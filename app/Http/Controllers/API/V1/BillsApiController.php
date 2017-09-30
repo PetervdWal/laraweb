@@ -12,15 +12,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use \BillService;
 
 class BillsApiController extends Controller
 {
+    protected $billService;
+
+    public function __construct(BillService $billService)
+    {
+        $this->billService = $billService;
+    }
+
     public function getBills(Request $request) {
         $userNumber = $request->userNumber;
 
-        $bills  = DB::table('bills')->select('id', 'company', 'paid as bill is paid', 'company_IBAN',
-            'date_received as date received')->where('user_id', $userNumber)->get();
-
+        $bills  = $this->billService->getBills($userNumber);
         return response()->json($bills);
     }
 
