@@ -18,7 +18,11 @@ class ProfileController extends Controller
     {
         $warning = "";
         $user = Auth::user();
-        $healthInsurance = DB::table('health_insurance_companies')->select('name')->where('id', $user->health_insurance_id)->distinct()->get();
+        $healthInsurance = DB::table('health_insurance_companies')
+            ->select('name')
+            ->where('id', $user->health_insurance_id)
+            ->distinct()
+            ->get();
         return view('profile', ['user' => $user, 'healthInsurance' => $healthInsurance ]);
 
     }

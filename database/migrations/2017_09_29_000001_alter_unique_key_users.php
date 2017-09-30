@@ -8,13 +8,12 @@
 use  \Illuminate\Database\Migrations\Migration;
 use \Illuminate\Database\Schema\Blueprint;
 
-class AddUserNumber extends Migration {
+class AlterUniqueKeyUsers extends Migration {
 
     public function up()
     {
         Schema::table("users", function (Blueprint $table) {
-
-            $table->bigInteger('user_number')->nullable()->unique();
+            $table->dropIndex('users_email_unique');
 
         });
     }
@@ -22,8 +21,7 @@ class AddUserNumber extends Migration {
 
     public function down() {
         Schema::table("users", function (Blueprint $table){
-            $table->dropColumn("user_number");
+            $table->string('email')->unique()->change();
         });
     }
 }
-

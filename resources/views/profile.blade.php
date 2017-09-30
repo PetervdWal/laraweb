@@ -17,7 +17,7 @@
         <h4>
             Profile settings
         </h4>
-
+</head>
 @stop
 @include('layouts.default')
 <body>
@@ -86,9 +86,17 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="address" value="{{$user->street.' '
-                .$user->home_number}}">
+                <input class="mdl-textfield__input" type="text" id="address" name="street" value="{{$user->street}}">
                 <label class="mdl-textfield__label" for="address">Address...</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        {{--Home number --}}
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id="homenumber" name="homeNumber" value="{{$user->home_number}}">
+                <label class="mdl-textfield__label" for="homenumber">Home number</label>
             </div>
             <div class="mdl-layout-spacer"></div>
         </div>
@@ -97,7 +105,7 @@
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="phoneNumber"
-                    value="{{$user->phone_number}}">
+                    value="{{$user->phone_number}}" name="phoneNumber">
                 <label class="mdl-textfield__label" for="phoneNumber">Phonenumber...</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -107,7 +115,7 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="emailAddress" value="{{$user->email}}">
+                <input class="mdl-textfield__input" type="email" id="emailAddress" value="{{$user->email}}" name="email">
                 <label class="mdl-textfield__label" for="emailAddress">Email address...</label>
             </div>
             <div class="mdl-layout-spacer"></div>
@@ -174,7 +182,8 @@
         </div>
     </form>
 @stop
-</body>
-</head>
 <script type="text/javascript" href="{{ asset('js/mdlDatePicker.js') }}"></script>
+</body>
+
+
 </html>
