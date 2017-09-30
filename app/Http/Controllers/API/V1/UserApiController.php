@@ -37,9 +37,12 @@ class UserApiController extends Controller
         }
     }
 
-    public function editUser(Request $request){
-        $result = DB::table('users')->insert(['street' => $request->street, 'home_number' => $request->homeNumber,
-            'email' => $request->email, 'phone_number' => $request->phoneNumber, ]})
+    public function editUser(Request $request)
+    {
+        $result = DB::table('users')->where('user_number', $request->userNumber)
+            ->update(['street' => $request->street, 'home_number' => $request->homeNumber,
+            'email' => $request->email, 'phone_number' => $request->phoneNumber]);
+
     }
 
     public function login(Request $request){
