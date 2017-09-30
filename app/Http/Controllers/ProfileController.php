@@ -8,7 +8,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,6 +24,17 @@ class ProfileController extends Controller
             ->distinct()
             ->get();
         return view('profile', ['user' => $user, 'healthInsurance' => $healthInsurance ]);
+
+    }
+
+    public function editUser(Request $request){
+        $apiRequest = Request::create("/api/v1/users/editUser", "POST", $request->all());
+
+        $response = app()->handle($apiRequest);
+
+        if($response){
+           return redirect()->intended('/profile');
+        }
 
     }
 }

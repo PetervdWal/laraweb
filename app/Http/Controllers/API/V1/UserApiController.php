@@ -42,7 +42,7 @@ class UserApiController extends Controller
         $result = DB::table('users')->where('user_number', $request->userNumber)
             ->update(['street' => $request->street, 'home_number' => $request->homeNumber,
             'email' => $request->email, 'phone_number' => $request->phoneNumber]);
-
+        return response()->json($result);
     }
 
     public function login(Request $request){

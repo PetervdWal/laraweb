@@ -22,7 +22,8 @@
 @include('layouts.default')
 <body>
 @section('content')
-    <form class = "">
+    <form class = "" method="POST" action="">
+        {{ csrf_field() }}
         {{--Personal section--}}
         <div class="mdl-grid">
             <div class="mdl-layout-spacer"></div>
@@ -36,7 +37,7 @@
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
-                       id="customerNumber" value="{{$user->user_number}}" disabled>
+                       id="customerNumber" value="{{$user->user_number}}" readonly name="userNumber">
                 <label class="mdl-textfield__label" for="customerNumber">Customer Number</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
