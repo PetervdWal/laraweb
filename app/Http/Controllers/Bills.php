@@ -43,7 +43,8 @@ class Bills extends Controller
     {
         $warning = "";
         $rows = NULL;
-        $COLUMNNAMES = ['treatment code', 'treatment description', 'total price', 'user price', 'user paid', 'insurance price', 'insurance paid', 'treatment given at'];
+        $COLUMNNAMES = ['treatment code', 'treatment description', 'total price', 'user price', 'user paid',
+            'insurance price', 'insurance paid', 'treatment given at'];
         //Distinct
         $user = Auth::user();
         $apiRequest = Request::create('/api/v1/bills/getBills', 'POST', ["userNumber" => $user->userNumber, "id" => $id]);
@@ -51,37 +52,4 @@ class Bills extends Controller
         return view('billDetails', ['rows' => $rows, 'columns' => $COLUMNNAMES, 'warning' => $warning]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
