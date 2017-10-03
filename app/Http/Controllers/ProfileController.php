@@ -11,7 +11,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use App\Services\UserService;
 
 /**
  * Class ProfileController
@@ -20,6 +20,13 @@ use Illuminate\Support\Facades\DB;
  */
 class ProfileController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * Shows the profile.
@@ -44,10 +51,7 @@ class ProfileController extends Controller
      * Edits the user based on values of the form
      */
     public function editUser(Request $request){
-        $apiRequest = Request::create("/api/v1/users/editUser", "POST", $request->all());
-
-        $response = app()->handle($apiRequest);
-
+        $response = $this->userService->editUser($request);
         if($response){
            return $this->showProfile();
         }

@@ -9,6 +9,7 @@ namespace App\Http\Controllers\API\V1;
  */
 
 use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -16,6 +17,13 @@ use Illuminate\Support\Facades\Response;
 
 class UserApiController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Userlogin and returns basic details of the user
      * @param $email
@@ -28,12 +36,8 @@ class UserApiController extends Controller
         $userNumber = $request->userNumber;
         $password = $request->password;
         if(Auth::attempt(['user_number' => $userNumber, 'password' => $password])) {
-
-            $user = DB::table('users')->select('name', 'email', 'street', 'home_number', 'phone_number')
-                ->where('user_number', $userNumber)->first(); //user number has unique constraint in db, so first is safe
-
+            $user =  $this->userService->getUser($userNumber);
             return response()->json($user);
-
         } else {
             return response()->json("{'message': 'Incorrect user and password'}");
         }
@@ -41,12 +45,11 @@ class UserApiController extends Controller
 
     public function editUser(Request $request)
     {
-        $result = DB::table('users')->where('user_number', $request->userNumber)
-            ->update(['street' => $request->street, 'home_number' => $request->homeNumber,
-            'email' => $request->email, 'phone_number' => $request->phoneNumber]);
+        $result = $this->userService->editUser($request);
         return response()->json($result);
     }
 
+    //TODO: make this an API-authentication using token.
     public function login(Request $request){
         $userNumber = $request->userNumber;
         $password = $request->password;
