@@ -44,10 +44,10 @@ class Bills extends Controller
         $warning = "";
         $rows = NULL;
         $COLUMNNAMES = ['treatment code', 'treatment description', 'total price', 'user price', 'user paid', 'insurance price', 'insurance paid', 'treatment given at'];
+        $userId = Auth::user()->user_number;
         //Distinct
-        $user = Auth::user();
-        $apiRequest = Request::create('/api/v1/bills/getBills', 'POST', ["userNumber" => $user->userNumber, "id" => $id]);
-        $rows = app()->handle($apiRequest)->getData();
+        $rows = $this->billService->getBill($id, $userId);
+
         return view('billDetails', ['rows' => $rows, 'columns' => $COLUMNNAMES, 'warning' => $warning]);
     }
 

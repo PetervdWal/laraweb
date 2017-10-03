@@ -12,8 +12,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use \BillService;
-
+use App\Services\BillService;
+;
 class BillsApiController extends Controller
 {
     protected $billService;
@@ -33,7 +33,9 @@ class BillsApiController extends Controller
     public function getBill(Request $request){
         $userNumber = $request->userNumber;
         $id = $request->billId;
-        $bill = DB::table('bills')->select()->where([['id','=' , $id], ['bill_reciever', '=',$userNumber]])->distinct()->get();
+
+        $bill = $this->billService->getBill($id, $userNumber);
+        return $bill;
         return response()->json($bill);
     }
 }

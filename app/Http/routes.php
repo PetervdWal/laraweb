@@ -35,3 +35,4 @@ Route::post('api/v1/users/getUser/', 'API\V1\UserApiController@getLogin');
 Route::post('api/v1/users/getUser/login', 'API\V1\UserApiController@login');
 Route::post('api/v1/users/editUser', 'API\V1\UserApiController@editUser');
 Route::post('api/v1/bills/getBills', 'API\V1\BillsApiController@getBills');
+Route::post('api/v1/bills/getBill', 'API\V1\BillsApiController@getBill');
