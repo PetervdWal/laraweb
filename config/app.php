@@ -139,10 +139,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        laravel\Providers\AppServiceProvider::class,
+        laravel\Providers\AuthServiceProvider::class,
+        laravel\Providers\EventServiceProvider::class,
+        laravel\Providers\RouteServiceProvider::class,
 
     ],
 
@@ -189,6 +189,7 @@ return [
         'Session'   => Illuminate\Support\Facades\Session::class,
         'Storage'   => Illuminate\Support\Facades\Storage::class,
         'URL'       => Illuminate\Support\Facades\URL::class,
+        'Uuid'      => Webpatser\Uuid\Uuid::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 

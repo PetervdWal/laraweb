@@ -6,10 +6,16 @@
  * Time: 19:16
  */
 
-namespace App\Services;
+namespace laravel\Services;
 
+use Doctrine\DBAL\Types\GuidType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use MongoDB\BSON\Timestamp;
+use Webpatser\Uuid\Uuid;
+use Carbon\Carbon;
+
 class UserService
 {
 
@@ -35,5 +41,32 @@ class UserService
             ->update(['street' => $request->street, 'home_number' => $request->homeNumber,
                 'email' => $request->email, 'phone_number' => $request->phoneNumber]);
         return $result;
+    }
+
+    /**
+     * Logs a user into the system by setting a (expirable) token
+     * @param Request $request
+     * @return bool
+     */
+    public function loginApiUser(Request $request){
+        if(Auth::once(['user_number' => $request->userNumber, "password" => $request->password])) {
+            $token = $this->setToken($request->userNumber);
+            return $token;
+        }
+    }
+
+    private function setToken($userNumber){
+        $token = Uuid::generate(4);
+        $result = DB::table('tokens')->insert([
+            "user_number" => $userNumber,
+            "token" => $token,
+            "created_at" => Carbon::now()
+        ]);
+        if($result){
+            return $token;
+        }
+        else {
+            return false;
+        }
     }
 }

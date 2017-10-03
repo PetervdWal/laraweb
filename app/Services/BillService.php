@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace laravel\Services;
 
 /**
  * Created by PhpStorm.

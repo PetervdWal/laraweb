@@ -6,13 +6,13 @@
  * Time: 16:41
  */
 
-namespace App\Http\Controllers\API\V1;
+namespace laravel\Http\Controllers\API\V1;
 
-use App\Http\Controllers\Controller;
+use laravel\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Services\BillService;
+use laravel\Services\BillService;
 ;
 class BillsApiController extends Controller
 {

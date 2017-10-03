@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\V1;
+namespace laravel\Http\Controllers\API\V1;
 /**
  * Created by PhpStorm.
  * User: peter
@@ -8,8 +8,8 @@ namespace App\Http\Controllers\API\V1;
  * Time: 13:08
  */
 
-use App\Http\Controllers\Controller;
-use App\Services\UserService;
+use laravel\Http\Controllers\Controller;
+use laravel\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -49,16 +49,10 @@ class UserApiController extends Controller
         return response()->json($result);
     }
 
-    //TODO: make this an API-authentication using token.
+
     public function login(Request $request){
-        $userNumber = $request->userNumber;
-        $password = $request->password;
-        if(Auth::attempt(['user_number' => $userNumber, 'password' => $password])) {
-            return redirect()->intended('/');
-        }
-        else {
-            Return 'incorrect password';
-        }
+        $result = $this->userService->loginApiUser($request);
+        return $result;
     }
 
     /**
