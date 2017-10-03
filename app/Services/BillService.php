@@ -13,17 +13,24 @@ use Illuminate\Support\Facades\DB;
 class BillService
 {
     /**
-     *
-     * @param int $userNumber
+     *Gets the bills based on the usernumber
+     * @param int $userNumber This is the usernumber with wich a user logs in.
+     * @return mixed bills  Collection of bills, each row contains id, company, billIsPaid and companyIban
      */
     public function getBills(int $userNumber)
     {
-        $bills = DB::table('bills')->select('id', 'company', 'paid as bill is paid', 'company_IBAN',
+        $bills = DB::table('bills')->select('id', 'company', 'paid as billIsPaid', 'company_IBAN as companyIban',
             'date_received as date received')->where('user_id', $userNumber)->get();
         return $bills;
     }
 
-    public function getBill($billId, $userId)
+    /**
+     * returns the details of a specific bill based on billId and user_number
+     * @param $billId
+     * @param $userNumber the usernumber that is used to login
+     * @return mixed returns a collection of details.
+     */
+    public function getBill($billId, $userNumber)
     {
 
         $bill = DB::table('bills_content as detail')->select(

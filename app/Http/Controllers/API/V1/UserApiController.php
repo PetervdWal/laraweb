@@ -28,7 +28,7 @@ class UserApiController extends Controller
         $password = $request->password;
         if(Auth::attempt(['user_number' => $userNumber, 'password' => $password])) {
             $user = DB::table('users')->select('name', 'email', 'street', 'home_number', 'phone_number')
-                ->where('email', $userNumber)->get();
+                ->where('user_number', $userNumber)->get();
 
             return response()->json($user);
 
