@@ -15,10 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Internal Calls
-Route::get('/bills/{id}', 'BillsController@showDetails')->middleware('auth');
-Route::get('/bills', 'BillsController@showBills')->middleware('auth');
-
-Route::get('/measurements','MeasurementsController@showMeasurements');
+Route::get('/bills/{id}', 'Bills@show')->middleware('auth');
+Route::get('/bills', 'Bills@showBills')->middleware('auth');
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -37,3 +35,4 @@ Route::post('api/v1/users/getUser/', 'API\V1\UserApiController@getLogin');
 Route::post('api/v1/users/getUser/login', 'API\V1\UserApiController@login');
 Route::post('api/v1/users/editUser', 'API\V1\UserApiController@editUser');
 Route::post('api/v1/bills/getBills', 'API\V1\BillsApiController@getBills');
+Route::post('api/v1/bills/getBill', 'API\V1\BillsApiController@getBill');
