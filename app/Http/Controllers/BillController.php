@@ -10,14 +10,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Services\BillService;
-//TODO: Bills rename to BillsController
-class Bills extends Controller
+
+class BillController extends Controller
 {
     protected $billService;
 
-    public function __construct(BillService $billService){
+    public function __construct(BillService $billService)
+    {
         $this->billService = $billService;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,20 +28,19 @@ class Bills extends Controller
     public function showBills()
     {
         $warning = "";
-        $bills = [];
         $COLUMNNAMES = ['bill id', 'company', 'bill is paid', 'company IBAN', 'date received'];
         $user = Auth::user();
         $bills = $this->billService->getBills($user->user_number);
         return view('bills', ['bills' => $bills, 'columns' => $COLUMNNAMES, 'warning' => $warning]);
     }
 
-      /**
+    /**
      * Display the specified resource.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showDetails($id)
     {
         $warning = "";
         $rows = NULL;
