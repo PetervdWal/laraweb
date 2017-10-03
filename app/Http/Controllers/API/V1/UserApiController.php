@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class UserApiController extends Controller
 {
@@ -27,8 +28,9 @@ class UserApiController extends Controller
         $userNumber = $request->userNumber;
         $password = $request->password;
         if(Auth::attempt(['user_number' => $userNumber, 'password' => $password])) {
+
             $user = DB::table('users')->select('name', 'email', 'street', 'home_number', 'phone_number')
-                ->where('user_number', $userNumber)->get();
+                ->where('user_number', $userNumber)->first(); //user number has unique constraint in db, so first is safe
 
             return response()->json($user);
 
