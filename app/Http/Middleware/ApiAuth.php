@@ -17,7 +17,6 @@ class ApiAuth
 {
     public function handle(Request $request, Closure $next){
         $response =$this->authenticate($request->userNumber, $request->token);
-        return $response;
         if($response->getStatusCode() != 200){
             return $response;
         }
