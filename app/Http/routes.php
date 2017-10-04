@@ -15,8 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Internal Calls
-Route::get('/bills/{id}', 'Bills@show')->middleware('auth');
-Route::get('/bills', 'Bills@showBills')->middleware('auth');
+Route::get('/bills/{id}', 'BillsController@Controller@show')->middleware('auth');
+Route::get('/bills', 'BillsController@showBills')->middleware('auth');
+
+Route::get('/measurements','MeasurementsController@showMeasurements');
+Route::post('/measurements','MeasurementsController@setMeasurementsType');
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
