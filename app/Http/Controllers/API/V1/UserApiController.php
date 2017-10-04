@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\Http\Controllers\API\V1;
+namespace App\Http\Controllers\API\V1;
 /**
  * Created by PhpStorm.
  * User: peter
@@ -8,8 +8,8 @@ namespace laravel\Http\Controllers\API\V1;
  * Time: 13:08
  */
 
-use laravel\Http\Controllers\Controller;
-use laravel\Services\UserService;
+use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

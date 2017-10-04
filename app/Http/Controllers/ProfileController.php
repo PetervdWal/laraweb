@@ -6,16 +6,16 @@
  * Time: 20:01
  */
 
-namespace laravel\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use laravel\Services\UserService;
+use App\Services\UserService;
 
 /**
  * Class ProfileController
- * @package laravel\Http\Controllers
+ * @package App\Http\Controllers
  * Controller for the profile view. This class can show the page and handle the form.
  */
 class ProfileController extends Controller

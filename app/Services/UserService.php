@@ -6,7 +6,7 @@
  * Time: 19:16
  */
 
-namespace laravel\Services;
+namespace App\Services;
 
 use Doctrine\DBAL\Types\GuidType;
 use Illuminate\Support\Facades\DB;

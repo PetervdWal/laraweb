@@ -1,15 +1,15 @@
 <?php
 
-namespace laravel\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use laravel\Http\Requests;
-use laravel\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use laravel\Services\BillService;
+use App\Services\BillService;
 //TODO: Bills rename to BillsController
 class Bills extends Controller
 {

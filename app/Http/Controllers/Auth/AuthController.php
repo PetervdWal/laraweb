@@ -1,10 +1,10 @@
 <?php
 
-namespace laravel\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use laravel\User;
+use App\User;
 use Validator;
-use laravel\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

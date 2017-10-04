@@ -26,6 +26,11 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/dashboard', function () {
     return view('welcome');
 });
+
+Route::get('/measurements','MeasurementsController@showMeasurements');
+Route::post('/measurements','MeasurementsController@setShownMeasurementsType');
+Route::post('/measurementDetails','MeasurementsController@showMeasurementDetails');
+
 Route::get('/profile', 'ProfileController@showProfile')->middleware('auth');
 Route::post('/profile', 'ProfileController@editUser');
 

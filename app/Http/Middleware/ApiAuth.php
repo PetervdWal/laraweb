@@ -6,7 +6,7 @@
  * Time: 12:57
  */
 
-namespace laravel\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Response;

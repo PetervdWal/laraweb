@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\Services;
+namespace App\Services;
 
 /**
  * Created by PhpStorm.
@@ -42,9 +42,9 @@ class BillService
             'detail.insurance_price as insurancePrice',
             'detail.insurance_paid as insurancePaid',
             'detail.treatment_given_at as treamentGivenAt')
-            ->join('bills as b', function ($join) use ($userId) {
+            ->join('bills as b', function ($join) use ($userNumber) {
                 $join->on("detail.bill_id", "=", 'b.id')
-                    ->where("b.user_id", "=", $userId);
+                    ->where("b.user_id", "=", $userNumber);
                     }
                  )
             ->where('detail.id', $billId)

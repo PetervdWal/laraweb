@@ -23,7 +23,7 @@ return [
     | is often just the "User" model but you may use whatever you like.
     |
     */
-    'model' => laravel\User::class,
+    'model' => App\User::class,
     /*
     |--------------------------------------------------------------------------
     | Authentication Table
