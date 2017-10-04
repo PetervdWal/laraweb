@@ -29,6 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \laravel\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \laravel\Http\Middleware\RedirectIfAuthenticated::class,
-        'apiAuth' => \laravel\Http\Middleware\ApiAuth::class
+        'apiAUth' => \laravel\Http\Middleware\ApiAuth::class
     ];
 }

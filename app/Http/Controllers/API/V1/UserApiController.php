@@ -57,18 +57,18 @@ class UserApiController extends Controller
 
     /**
      * Get the user details
-     * @param $userNumber
+     * @param $email
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getUser($userNumber) {
+    public function getUser($email) {
         $user = DB::table('users as u')
-            ->select('u.name as userName', 'u.email as email', 'u.street as street', 'u.home_number as homeNumber',
-                'u.phone_number as phoneNumber', 'u.bsn as bsn', 'u.date_of_birth as dateOfBirth',
-                'u.policy_number as policyNumber', 'u.insurance_type as insuranceType',
-                'u.insurance_start as insuranceStart', 'u.insurance_end as insuranceEnd', 'u.excess as excess',
-                'h.name as healthInsuranceCompanyName')
+            ->select('u.name as Username', 'u.email as Email', 'u.street as Street', 'u.home_number as HomeNumber',
+                'u.phone_number as PhoneNumber', 'u.bsn as BSN', 'u.date_of_birth as DateOfBirth',
+                'u.policy_number as PolicyNumber', 'u.insurance_type as InsuranceType',
+                'u.insurance_start as InsuranceStart', 'u.insurance_end as InsuranceEnd', 'u.excess as Excess',
+                'h.name as HealthInsuranceCompanyName')
             ->leftJoin('health_insurance_companies as h', 'u.health_insurance_id', '=', 'h.id')
-            ->where('user_number', $userNumber)->get()->first();
+            ->where('email', $email)->get();
         return response()->json($user);
     }
 }
