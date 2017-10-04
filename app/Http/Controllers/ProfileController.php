@@ -57,4 +57,9 @@ class ProfileController extends Controller
         }
 
     }
+
+    public function loginWebUser(Request $request){
+        $response = $this->userService->loginWebUser($request);
+        return $response;
+    }
 }

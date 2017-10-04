@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 Route::get('/measurements','MeasurementsController@showMeasurements');
 Route::post('/measurements','MeasurementsController@setShownMeasurementsType');
 Route::post('/measurementDetails','MeasurementsController@showMeasurementDetails');
-
+Route::post('/login', 'ProfileController@loginWebUser');
 Route::get('/profile', 'ProfileController@showProfile')->middleware('auth');
 Route::post('/profile', 'ProfileController@editUser');
 

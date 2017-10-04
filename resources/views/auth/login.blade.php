@@ -16,7 +16,7 @@
     @stop
 
 @section('content')
-        <form class="center" method="POST" action="/api/v1/users/getUser/login">
+        <form class="center" method="POST" action="/login">
             {!! csrf_field() !!}
             <div class="mdl-grid">
                 <div class="mdl-layout-spacer"></div>

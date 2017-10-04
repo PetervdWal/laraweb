@@ -43,6 +43,11 @@ class UserService
         return $result;
     }
 
+    public function loginWebUser(Request $request){
+        if(Auth::attempt(['user_number' => $request->userNumber, "password" => $request->password])) {
+            return redirect("/");
+        }
+    }
     /**
      * Logs a user into the system by setting a (expirable) token
      * @param Request $request
