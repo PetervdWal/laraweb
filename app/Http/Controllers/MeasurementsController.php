@@ -14,7 +14,7 @@ class MeasurementsController extends Controller
     public static $BLOOD_PRESSURE = "Blood pressure";
     public static $PULSE = "Pulse";
     public static $ECG_WAVES = "ECG waves";
-    public static $measurementstype = null;
+    public static $measurementstype;
     protected $measurementService;
 
     public function __construct(MeasurementService $measurementService)
@@ -22,6 +22,10 @@ class MeasurementsController extends Controller
         $this->measurementService = $measurementService;
     }
 
+    /**
+     * Shows all measurements of one type
+     * TODO: Set it to show measurements of one type, of one user
+     */
     public function showMeasurements()
     {
         if (self::$measurementstype == null) {
@@ -29,19 +33,34 @@ class MeasurementsController extends Controller
         }
 
         $measurements = $this->measurementService->getMeasurements(self::$measurementstype);
-        $headers = ['Measurement', 'Taken At', 'Details'];
+        $headers = array_keys(get_object_vars($measurements[0]));
 
         return view('measurements', ['measurements' => $measurements, 'headers' => $headers,
             'measurementtype_shown' => self::$measurementstype]);
     }
 
-    public function setMeasurementsType(request $request)
+    /**
+     * Sets the type of measurements to show
+     * @param Request $request
+     */
+    public function setShownMeasurementsType(request $request)
     {
         self::$measurementstype = $request->type;
         return $this->showMeasurements();
     }
 
-    public function showMeasurementDetails($id){
+    /**
+     * Show details of one Measurement
+     * @param $id
+     */
+    public function showMeasurementDetails(request $request)
+    {   //Standin information for the measurements details
+        $id = $request->id;
+        $type= $request->type;
 
+        $details = $this->measurementService->getMeasurementDetails($type, $id);
+        $headers = array_keys(get_object_vars($details[0]));
+        return view('measurementDetails', ['details' => $details, 'headers' => $headers,
+            'id' => $id]);
     }
 }
