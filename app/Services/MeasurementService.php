@@ -25,17 +25,24 @@ class MeasurementService
     /**
      * @param int $id
      */
-    public function getMeasurementDetails($type, int $id)
+    public function getMeasurementDetails(String $type, int $id)
     {
-        var_dump($type);
-        var_dump($id);
         $measurementDetails = null;
         if ($type == MeasurementsController::$BLOOD_PRESSURE) {
-            $measurementDetails = DB::table('pulse_measurements')->select('pulse', 'measurement_taken_at')->get();
+            $measurementDetails = DB::table('pulse_measurements')
+                ->select('pulse', 'measurement_taken_at')
+                ->where('id', $id)
+                ->get();
         } else if ($type == MeasurementsController::$PULSE) {
-            $measurementDetails = DB::table('pulse_measurements')->select('pulse', 'measurement_taken_at')->get();
+            $measurementDetails = DB::table('pulse_measurements')
+                ->select('pulse', 'measurement_taken_at')
+                ->where('id', $id)
+                ->get();
         } else if ($type == MeasurementsController::$ECG_WAVES) {
-            $measurementDetails = DB::table('ECG_waves_measurements')->select('ECG_waves', 'measurement_taken_at')->get();
+            $measurementDetails = DB::table('ECG_waves_measurements')
+                ->select('ECG_waves', 'measurement_taken_at')
+                ->where('id', $id)
+                ->get();
         }
         return $measurementDetails;
     }
