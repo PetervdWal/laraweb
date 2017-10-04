@@ -27,6 +27,13 @@ class ProfileController extends Controller
         $this->userService = $userService;
     }
 
+    public function login(Request $request){
+
+        if(Auth::attempt(['user_number' => $request->userNumber, "password" => $request->password])){
+            return redirect("/");
+    };
+
+    }
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * Shows the profile.
