@@ -19,8 +19,8 @@ Route::get('/bills/{id}', 'BillsController@Controller@show')->middleware('auth')
 Route::get('/bills', 'BillsController@showBills')->middleware('auth');
 
 Route::get('/measurements','MeasurementsController@showMeasurements');
-Route::post('/measurements','MeasurementsController@setMeasurementsType');
-
+Route::post('/measurements','MeasurementsController@setShownMeasurementsType');
+Route::get('measurements/{id}','MeasurementsController@showMeasurementDetails');
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
