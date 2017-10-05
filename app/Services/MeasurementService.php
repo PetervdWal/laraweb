@@ -4,22 +4,17 @@ namespace App\Services;
 use App\Http\Controllers\MeasurementsController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 class MeasurementService
 {
     /**
      * @param String $type
      */
-    public function getMeasurements(String $type)
+    public function getMeasurements()
     {
-        $measurements = null;
-        if ($type == MeasurementsController::$BLOOD_PRESSURE) {
-            $measurements = DB::table('blood_pressure_measurements')->select( 'measurementid', 'measurement_taken_at')->groupBy('measurementid')->get();
-        } else if ($type == MeasurementsController::$PULSE) {
-            $measurements = DB::table('pulse_measurements')->select( 'measurementid', 'measurement_taken_at')->groupBy('measurementid')->get();
-        } else if ($type == MeasurementsController::$ECG_WAVES) {
-            $measurements = DB::table('ECG_waves_measurements')->select( 'measurementid', 'measurement_taken_at')->groupBy('measurementid')->get();
-        }
+        //$user_number = Auth::user()->user_number;
+        $measurements = DB::table('measurements')->select('id','name','type','created_at')->get();
+
         return $measurements;
     }
 
@@ -27,8 +22,10 @@ class MeasurementService
      * @param String $type
      * @param int $measurementid
      */
-    public function getMeasurementDetails(String $type, int $measurementid)
+    public function getMeasurementDetails(int $measurementid)
     {
+        $measurement = DB::table('measurements')->select('type', 'name')->where('id',$measurementid)->first();
+        $type = $measurement->type;
         $measurementDetails = null;
         if ($type == MeasurementsController::$BLOOD_PRESSURE) {
             $measurementDetails = DB::table('blood_pressure_measurements')
