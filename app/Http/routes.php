@@ -42,5 +42,6 @@ Route::post('api/v1/users/editUser', 'API\V1\UserApiController@editUser')->middl
 Route::post('api/v1/bills/getBills', 'API\V1\BillsApiController@getBills')->middleware('apiAuth');
 Route::post('api/v1/bills/getBill', 'API\V1\BillsApiController@getBill')->middleware('apiAuth');
 Route::post('api/v1/measurements/getMeasurements', 'API\V1\MeasurementsApiController@getAllMeasurements')->middleware('apiAuth');
+Route::post('/api/v1/measurements/getMeasurementDetail' ,'API\V1\MeasurementsApiController@getMeasurementDetails');
 Route::post('api/v1/measurements/postPulse', 'API\V1\MeasurementsApiController@insertPulse')->middleware('apiAuth');
 Route::post('api/v1/measurements/postEcg', 'API\V1\MeasurementsApiController@insertEcg')->middleware('apiAuth');
