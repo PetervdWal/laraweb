@@ -43,3 +43,4 @@ Route::post('api/v1/bills/getBills', 'API\V1\BillsApiController@getBills')->midd
 Route::post('api/v1/bills/getBill', 'API\V1\BillsApiController@getBill')->middleware('apiAuth');
 Route::post('api/v1/measurements/getMeasurements', 'API\V1\MeasurementsApiController@getMeasurementsDetails')->middleware('apiAuth');
 Route::post('api/v1/measurements/postPulse', 'API\V1\MeasurementsApiController@insertPulse')->middleware('apiAuth');
+Route::post('api/v1/measurements/postEcg', 'API\V1\MeasurementsApiController@insertEcg')->middleware('apiAuth');

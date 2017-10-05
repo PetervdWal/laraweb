@@ -66,6 +66,21 @@ class MeasurementService
         }
     }
 
+    public function insertEcg($measurements){
+        $result = $this->selectLastId("ecg");
+        $id = $result == null ? 1 :  $result->measurementid+1;
+
+        $dataSet = $this->convertToData("ECG_waves", $measurements, $id);
+
+        $result = DB::table('ECG_waves_measurements')
+            ->insert($dataSet);
+        if($result){
+            return $id;
+        }
+        else {
+            return response("Insert went wrong", 500);
+        }
+    }
     private function convertToData(String $datatype, $doubleArray, $id){
         $dataSet = [];
         foreach($doubleArray as $measurement ){
@@ -82,6 +97,12 @@ class MeasurementService
     private function selectLastId($type){
         if($type == "pulse"){
             return DB::table('pulse_measurements')
+                ->select('measurementid')
+                ->orderBy('measurementid', 'desc')
+                ->first();
+        }
+        else if($type == "ecg"){
+            return DB::table("ECG_waves_measurements")
                 ->select('measurementid')
                 ->orderBy('measurementid', 'desc')
                 ->first();

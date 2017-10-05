@@ -43,4 +43,10 @@ class MeasurementsApiController extends Controller
         $result = $this->measurementService->insertPulse($measurements);
         return response()->json($result);
     }
+
+    public function insertEcg(Request $request){
+        $measurements =$request->measurements;
+        $result =  $this->measurementService->insertEcg($measurements);
+        return response()->json($result);
+    }
 }
