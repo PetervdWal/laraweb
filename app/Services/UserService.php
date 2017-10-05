@@ -60,6 +60,11 @@ class UserService
         }
     }
 
+    public function getUserByToken($token){
+        $result = DB::table('tokens')->select("user_number")->where("token", $token)->first();
+        return $result->user_number;
+    }
+
     private function setToken($userNumber){
         $token = Uuid::generate(4);
         if(DB::table('tokens')->select("user_number")->get()){

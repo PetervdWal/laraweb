@@ -50,11 +50,24 @@ class MeasurementService
 
     }
 
+    public function getAllMeasurements($userNumber) {
+        $result = DB::table("measurements")
+            ->select('name', 'type', 'created_at as createdAt')
+            ->where("user_number", $userNumber)->get();
+        return $result;
+    }
 
-    public function insertPulse($measurements) {
-        $result = $this->selectLastId("pulse");
-        $id = $result == null ? 1 :  $result->measurementid+1;
 
+    public function insertPulse($measurements, $userNumber) {
+        $result = $this->selectLastId();
+        $id = $result == null ? 1 :  $result->id+1;
+        $title = "Meting " . $id;
+        DB::table("measurements")->insert([
+            "name" => $title,
+            "created_at" => Carbon::now(),
+            "type" => MeasurementsController::$PULSE,
+            "user_number" => $userNumber
+        ]);
         $dataSet = $this->convertToData("pulse", $measurements, $id);
 
         $result = DB::table('pulse_measurements')
@@ -67,10 +80,17 @@ class MeasurementService
         }
     }
 
-    public function insertEcg($measurements){
-        $result = $this->selectLastId("ecg");
-        $id = $result == null ? 1 :  $result->measurementid+1;
-
+    public function insertEcg($measurements, $userNumber){
+        $result = $this->selectLastId();
+        $id = $result == null ? 1 :  $result->id+1;
+        $id = $result == null ? 1 :  $result->id+1;
+        $title = "Meting " . $id;
+        DB::table("measurements")->insert([
+            "name" => $title,
+            "created_at" => Carbon::now(),
+            "type" => MeasurementsController::$ECG_WAVES,
+            "user_number" => $userNumber
+        ]);
         $dataSet = $this->convertToData("ECG_waves", $measurements, $id);
 
         $result = DB::table('ECG_waves_measurements')
@@ -95,18 +115,11 @@ class MeasurementService
     }
 
 
-    private function selectLastId($type){
-        if($type == "pulse"){
-            return DB::table('pulse_measurements')
-                ->select('measurementid')
-                ->orderBy('measurementid', 'desc')
+    private function selectLastId(){
+            return DB::table('measurements')
+                ->select('id')
+                ->orderBy('id', 'desc')
                 ->first();
-        }
-        else if($type == "ecg"){
-            return DB::table("ECG_waves_measurements")
-                ->select('measurementid')
-                ->orderBy('measurementid', 'desc')
-                ->first();
-        }
+
     }
 }
