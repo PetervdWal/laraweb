@@ -63,4 +63,11 @@ class MeasurementsController extends Controller
         return view('measurementDetails', ['details' => $details, 'headers' => $headers,
             'id' => $id]);
     }
+
+    private static function makeTestData(){
+        DB::table('blood_pressure_measurements')->insert(['measurementid'=>2,'pressure_upper'=> 40, 'pressure_lower'=>20, 'measurement_taken_at'=>Carbon::now()]);
+        DB::table('pulse_measurements')->insert(['measurementid'=>2,'pulse'=>70, 'measurement_taken_at'=>Carbon::now()]);
+        DB::table('ECG_waves_measurements')->insert(['measurementid'=>2,'ECG_waves'=>10, 'measurement_taken_at'=>Carbon::now()]);
+
+    }
 }

@@ -5,11 +5,9 @@
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
     <thead>
     <tr>
-    <tr>
         @foreach($columns as $column)
             <th>{{$column}}</th>
         @endforeach
-    </tr>
     </tr>
     </thead>
     <tbody>
