@@ -36,7 +36,7 @@ Route::post('/profile', 'ProfileController@editUser');
 
 //API Calls
 Route::get('api/v1/users/getUser/{email}/', 'API\V1\UserApiController@getUser');
-Route::post('api/v1/users/getUser', 'API\V1\UserApiController@getLogin')->middleware('apiAuth');
+Route::post('api/v1/users/getUser', 'API\V1\UserApiController@getUser')->middleware('apiAuth');
 Route::post('api/v1/users/getToken', 'API\V1\UserApiController@login');
 Route::post('api/v1/users/editUser', 'API\V1\UserApiController@editUser')->middleware('apiAuth');
 Route::post('api/v1/bills/getBills', 'API\V1\BillsApiController@getBills')->middleware('apiAuth');
