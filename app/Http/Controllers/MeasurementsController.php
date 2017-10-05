@@ -11,9 +11,9 @@ use Carbon\Carbon;
 
 class MeasurementsController extends Controller
 {
-    public static $BLOOD_PRESSURE = "Blood pressure";
-    public static $PULSE = "Pulse";
-    public static $ECG_WAVES = "ECG waves";
+    public static $BLOOD_PRESSURE = "bloodPressure";
+    public static $PULSE = "pulse";
+    public static $ECG_WAVES = "ecg";
     public static $measurementstype;
     protected $measurementService;
 

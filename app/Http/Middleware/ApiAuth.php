@@ -32,7 +32,7 @@ class ApiAuth
             if($result == null) {
                 return response("User token not found, please login again", 440);
             }
-            if(Carbon::createFromFormat('Y-m-d H:i:s', $result->created_at)->diffInMinutes(Carbon::Now()) > 3){
+            if(Carbon::createFromFormat('Y-m-d H:i:s', $result->created_at)->diffInMinutes(Carbon::Now()) > 30){
                 return response("Token expired, please login again", 440);
             }
             return response("succes", 200);

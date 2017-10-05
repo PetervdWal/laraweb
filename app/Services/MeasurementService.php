@@ -10,11 +10,12 @@ class MeasurementService
     /**
      * @param String $type
      */
-    public function getMeasurements(String $type)
+    public function getMeasurements(String $type, int $id)
     {
         $measurements = null;
         if ($type == MeasurementsController::$BLOOD_PRESSURE) {
-            $measurements = DB::table('blood_pressure_measurements')->select('id', 'measurementid','pressure_upper', 'pressure_lower', 'measurement_taken_at')->get();
+            $measurements = DB::table('blood_pressure_measurements')
+                ->select('id', 'measurementid','pressure_upper', 'pressure_lower', 'measurement_taken_at')->get();
         } else if ($type == MeasurementsController::$PULSE) {
             $measurements = DB::table('pulse_measurements')->select('id', 'measurementid','pulse', 'measurement_taken_at')->get();
         } else if ($type == MeasurementsController::$ECG_WAVES) {
@@ -52,25 +53,32 @@ class MeasurementService
 
     public function insertPulse($measurements) {
         $result = $this->selectLastId("pulse");
-        $id = $result == null ? 1 : $result;
+        $id = $result == null ? 1 :  $result->measurementid+1;
 
-        $dataSet = [];
-        foreach($measurements as $measurement ){
-            $dataSet = [
-                "pulse" => $measurement,
-                "measure_taken_at" => Carbon::now(),
-                "measurement_id" => $id
-                ];
-        }
+        $dataSet = $this->convertToData("pulse", $measurements, $result);
+
         $result = DB::table('pulse_measurements')
-            ->insert($$dataSet);
+            ->insert($dataSet);
         if($result){
-            return response($id, 200);
+            return $id;
         }
         else {
             return response("Insert went wrong", 500);
         }
     }
+
+    private function convertToData(String $datatype, $doubleArray, $id){
+        $dataSet = [];
+        foreach($doubleArray as $measurement ){
+            $dataSet = [
+                $datatype => $measurement,
+                "measurement_taken_at" => Carbon::now(),
+                "measurementid" => $id
+            ];
+        }
+        return $dataSet;
+    }
+
 
     private function selectLastId($type){
         if($type == "pulse"){

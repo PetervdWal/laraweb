@@ -26,7 +26,6 @@ class MeasurementsApiController extends Controller
 
     public function getMeasurements(request $request){
         $type = $request->type;
-
         $measurements = $this->measurementService->getMeasurements($type);
         return response()->json($measurements);
     }
@@ -34,10 +33,7 @@ class MeasurementsApiController extends Controller
     public function getMeasurementDetails(request $request){
         $type= $request->type;
         $id= $request->id;
-
         $details = $this->measurementService->getMeasurementDetails(type, id);
-        //TODO: Necessary? Or should it be removed?
-        return $details;
         return response()->json($details);
 
     }
@@ -45,5 +41,6 @@ class MeasurementsApiController extends Controller
     public function insertPulse(Request $request) {
         $measurements = $request->measurements;
         $result = $this->measurementService->insertPulse($measurements);
+        return response()->json($result);
     }
 }
