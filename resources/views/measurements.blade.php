@@ -38,7 +38,7 @@
                         <td>{{$value}}</td>
                     @endforeach
                     <td>
-                        <button type="submit" name="id" value="{{$measurement->id}}"
+                        <button type="submit" name="measurementid" value="{{$measurement->measurementid}}"
                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                             Details
                         </button>

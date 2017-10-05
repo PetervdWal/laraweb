@@ -10,41 +10,40 @@ class MeasurementService
     /**
      * @param String $type
      */
-    public function getMeasurements(String $type, int $id)
+    public function getMeasurements(String $type)
     {
         $measurements = null;
         if ($type == MeasurementsController::$BLOOD_PRESSURE) {
-            $measurements = DB::table('blood_pressure_measurements')
-                ->select('id', 'measurementid','pressure_upper', 'pressure_lower', 'measurement_taken_at')->get();
+            $measurements = DB::table('blood_pressure_measurements')->select( 'measurementid', 'measurement_taken_at')->groupBy('measurementid')->get();
         } else if ($type == MeasurementsController::$PULSE) {
-            $measurements = DB::table('pulse_measurements')->select('id', 'measurementid','pulse', 'measurement_taken_at')->get();
+            $measurements = DB::table('pulse_measurements')->select( 'measurementid', 'measurement_taken_at')->groupBy('measurementid')->get();
         } else if ($type == MeasurementsController::$ECG_WAVES) {
-            $measurements = DB::table('ECG_waves_measurements')->select('id', 'measurementid','ECG_waves', 'measurement_taken_at')->get();
+            $measurements = DB::table('ECG_waves_measurements')->select( 'measurementid', 'measurement_taken_at')->groupBy('measurementid')->get();
         }
         return $measurements;
     }
 
     /**
      * @param String $type
-     * @param int $id
+     * @param int $measurementid
      */
-    public function getMeasurementDetails(String $type, int $id)
+    public function getMeasurementDetails(String $type, int $measurementid)
     {
         $measurementDetails = null;
         if ($type == MeasurementsController::$BLOOD_PRESSURE) {
             $measurementDetails = DB::table('blood_pressure_measurements')
-                ->select('pressure_lower', 'pressure_upper', 'measurement_taken_at')
-                ->where('id', $id)
+                ->select('id','pressure_lower', 'pressure_upper', 'measurement_taken_at')
+                ->where('measurementid', $measurementid)
                 ->get();
         } else if ($type == MeasurementsController::$PULSE) {
             $measurementDetails = DB::table('pulse_measurements')
-                ->select('pulse', 'measurement_taken_at')
-                ->where('id', $id)
+                ->select('id','pulse', 'measurement_taken_at')
+                ->where('measurementid', $measurementid)
                 ->get();
         } else if ($type == MeasurementsController::$ECG_WAVES) {
             $measurementDetails = DB::table('ECG_waves_measurements')
-                ->select('ECG_waves', 'measurement_taken_at')
-                ->where('id', $id)
+                ->select('id','ECG_waves', 'measurement_taken_at')
+                ->where('measurementid', $measurementid)
                 ->get();
         }
         return $measurementDetails;

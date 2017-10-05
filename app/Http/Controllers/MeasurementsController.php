@@ -33,8 +33,11 @@ class MeasurementsController extends Controller
         }
 
         $measurements = $this->measurementService->getMeasurements(self::$measurementstype);
-        $headers = array_keys(get_object_vars($measurements[0]));
-
+        if ($measurements) {
+            $headers = array_keys(get_object_vars($measurements[0]));
+        } else {
+            $headers = ["id"];
+        }
         return view('measurements', ['measurements' => $measurements, 'headers' => $headers,
             'measurementtype_shown' => self::$measurementstype]);
     }
@@ -55,19 +58,25 @@ class MeasurementsController extends Controller
      */
     public function showMeasurementDetails(request $request)
     {   //Standin information for the measurements details
-        $id = $request->id;
-        $type= $request->type;
+        $measurementid = $request->measurementid;
+        $type = $request->type;
 
-        $details = $this->measurementService->getMeasurementDetails($type, $id);
-        $headers = array_keys(get_object_vars($details[0]));
+        $details = $this->measurementService->getMeasurementDetails($type, $measurementid);
+
+        if ($details) {
+            $headers = array_keys(get_object_vars($details[0]));
+        } else {
+            $headers = ["id"];
+        }
         return view('measurementDetails', ['details' => $details, 'headers' => $headers,
-            'id' => $id]);
+            'measurementid' => $measurementid]);
     }
 
-    private static function makeTestData(){
-        DB::table('blood_pressure_measurements')->insert(['measurementid'=>2,'pressure_upper'=> 40, 'pressure_lower'=>20, 'measurement_taken_at'=>Carbon::now()]);
-        DB::table('pulse_measurements')->insert(['measurementid'=>2,'pulse'=>70, 'measurement_taken_at'=>Carbon::now()]);
-        DB::table('ECG_waves_measurements')->insert(['measurementid'=>2,'ECG_waves'=>10, 'measurement_taken_at'=>Carbon::now()]);
+    private static function makeTestData()
+    {
+        DB::table('blood_pressure_measurements')->insert(['measurementid' => 2, 'pressure_upper' => 40, 'pressure_lower' => 20, 'measurement_taken_at' => Carbon::now()]);
+        DB::table('pulse_measurements')->insert(['measurementid' => 2, 'pulse' => 70, 'measurement_taken_at' => Carbon::now()]);
+        DB::table('ECG_waves_measurements')->insert(['measurementid' => 2, 'ECG_waves' => 10, 'measurement_taken_at' => Carbon::now()]);
 
     }
 }
