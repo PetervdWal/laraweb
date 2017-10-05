@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Http\Controllers\MeasurementsController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class MeasurementService
@@ -45,5 +46,37 @@ class MeasurementService
                 ->get();
         }
         return $measurementDetails;
+
+    }
+
+    public function insertPulse($measurements) {
+        $result = $this->selectLastId("pulse");
+        $id = $result == null ? 1 : $result;
+
+        $dataSet = [];
+        foreach($measurements as $measurement ){
+            $dataSet = [
+                "pulse" => $measurement,
+                "measure_taken_at" => Carbon::now(),
+                "measurement_id" => $id
+                ];
+        }
+        $result = DB::table('pulse_measurements')
+            ->insert($$dataSet);
+        if($result){
+            return response($id, 200);
+        }
+        else {
+            return response("Insert went wrong", 500);
+        }
+    }
+
+    private function selectLastId($type){
+        if($type == "pulse"){
+            return DB::table('pulse_measurements')
+                ->select('measurementid')
+                ->orderBy('measurementid', 'desc')
+                ->first();
+        }
     }
 }

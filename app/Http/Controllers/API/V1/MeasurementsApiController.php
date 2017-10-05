@@ -41,4 +41,9 @@ class MeasurementsApiController extends Controller
         return response()->json($details);
 
     }
+
+    public function insertPulse(Request $request) {
+        $measurements = $request->measurements;
+        $result = $this->measurementService->insertPulse($measurements);
+    }
 }
