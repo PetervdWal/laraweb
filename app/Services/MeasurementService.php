@@ -13,7 +13,7 @@ class MeasurementService
     {
         $measurements = null;
         if ($type == MeasurementsController::$BLOOD_PRESSURE) {
-            $measurements = DB::table('blood_pressure_measurements')->select('id', 'pressure_upper','pressure_lower', 'measurement_taken_at')->get();
+            $measurements = DB::table('blood_pressure_measurements')->select('id', 'pressure_upper', 'pressure_lower', 'measurement_taken_at')->get();
         } else if ($type == MeasurementsController::$PULSE) {
             $measurements = DB::table('pulse_measurements')->select('id', 'pulse', 'measurement_taken_at')->get();
         } else if ($type == MeasurementsController::$ECG_WAVES) {
@@ -23,6 +23,7 @@ class MeasurementService
     }
 
     /**
+     * @param String $type
      * @param int $id
      */
     public function getMeasurementDetails(String $type, int $id)
@@ -30,7 +31,7 @@ class MeasurementService
         $measurementDetails = null;
         if ($type == MeasurementsController::$BLOOD_PRESSURE) {
             $measurementDetails = DB::table('blood_pressure_measurements')
-                ->select('pressure_lower','pressure_upper', 'measurement_taken_at')
+                ->select('pressure_lower', 'pressure_upper', 'measurement_taken_at')
                 ->where('id', $id)
                 ->get();
         } else if ($type == MeasurementsController::$PULSE) {

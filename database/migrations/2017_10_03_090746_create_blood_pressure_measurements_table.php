@@ -14,7 +14,9 @@ class CreateBloodPressureMeasurementsTable extends Migration
     {
         Schema::create('blood_pressure_measurements', function(Blueprint $table){
             $table->increments('id')->unique();
-            $table->double('pressure', 5);
+            $table->integer('measurementid')->required();
+            $table->double('pressure_upper');
+            $table->double('pressure_lower', 5);
             $table->dateTime('measurement_taken_at');
         });
     }

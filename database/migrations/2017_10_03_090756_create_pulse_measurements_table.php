@@ -14,6 +14,7 @@ class CreatePulseMeasurementsTable extends Migration
     {
         Schema::create('pulse_measurements', function(Blueprint $table){
             $table->increments('id')->unique();
+            $table->integer('measurementid')->required();
             $table->double('pulse', 5);
             $table->dateTime('measurement_taken_at');
         });

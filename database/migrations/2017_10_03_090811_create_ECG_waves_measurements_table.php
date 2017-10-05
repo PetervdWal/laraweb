@@ -13,8 +13,9 @@ class CreateECGWavesMeasurementsTable extends Migration
     public function up()
     {
 
-        Schema::create('ECG_waves_measurements', function(Blueprint $table){
+        Schema::create('ECG_waves_measurements', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->integer('measurementid')->required();
             $table->double('ECG_waves', 5);
             $table->dateTime('measurement_taken_at');
         });
