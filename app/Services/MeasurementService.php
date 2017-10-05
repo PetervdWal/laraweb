@@ -54,7 +54,7 @@ class MeasurementService
         $result = $this->selectLastId("pulse");
         $id = $result == null ? 1 :  $result->measurementid+1;
 
-        $dataSet = $this->convertToData("pulse", $measurements, $result);
+        $dataSet = $this->convertToData("pulse", $measurements, $id);
 
         $result = DB::table('pulse_measurements')
             ->insert($dataSet);
