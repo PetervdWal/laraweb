@@ -9,12 +9,21 @@ namespace App\Http\Controllers\API\V1;
  */
 
 use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class UserApiController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Userlogin and returns basic details of the user
      * @param $email
@@ -27,11 +36,8 @@ class UserApiController extends Controller
         $userNumber = $request->userNumber;
         $password = $request->password;
         if(Auth::attempt(['user_number' => $userNumber, 'password' => $password])) {
-            $user = DB::table('users')->select('name', 'email', 'street', 'home_number', 'phone_number')
-                ->where('email', $userNumber)->get();
-
+            $user =  $this->userService->getUser($userNumber);
             return response()->json($user);
-
         } else {
             return response()->json("{'message': 'Incorrect user and password'}");
         }
@@ -39,37 +45,30 @@ class UserApiController extends Controller
 
     public function editUser(Request $request)
     {
-        $result = DB::table('users')->where('user_number', $request->userNumber)
-            ->update(['street' => $request->street, 'home_number' => $request->homeNumber,
-            'email' => $request->email, 'phone_number' => $request->phoneNumber]);
+        $result = $this->userService->editUser($request);
         return response()->json($result);
     }
 
+
     public function login(Request $request){
-        $userNumber = $request->userNumber;
-        $password = $request->password;
-        if(Auth::attempt(['user_number' => $userNumber, 'password' => $password])) {
-            return redirect()->intended('/');
-        }
-        else {
-            Return 'incorrect password';
-        }
+        $result = $this->userService->loginApiUser($request);
+        return $result;
     }
 
     /**
      * Get the user details
-     * @param $email
+     * @param $userNumber
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getUser($email) {
+    public function getUser($userNumber) {
         $user = DB::table('users as u')
-            ->select('u.name as Username', 'u.email as Email', 'u.street as Street', 'u.home_number as HomeNumber',
-                'u.phone_number as PhoneNumber', 'u.bsn as BSN', 'u.date_of_birth as DateOfBirth',
-                'u.policy_number as PolicyNumber', 'u.insurance_type as InsuranceType',
-                'u.insurance_start as InsuranceStart', 'u.insurance_end as InsuranceEnd', 'u.excess as Excess',
-                'h.name as HealthInsuranceCompanyName')
+            ->select('u.name as userName', 'u.email as email', 'u.street as street', 'u.home_number as homeNumber',
+                'u.phone_number as phoneNumber', 'u.bsn as bsn', 'u.date_of_birth as dateOfBirth',
+                'u.policy_number as policyNumber', 'u.insurance_type as insuranceType',
+                'u.insurance_start as insuranceStart', 'u.insurance_end as insuranceEnd', 'u.excess as excess',
+                'h.name as healthInsuranceCompanyName')
             ->leftJoin('health_insurance_companies as h', 'u.health_insurance_id', '=', 'h.id')
-            ->where('email', $email)->get();
+            ->where('user_number', $userNumber)->get()->first();
         return response()->json($user);
     }
 }
