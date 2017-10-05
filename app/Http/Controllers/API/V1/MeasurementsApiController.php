@@ -33,7 +33,7 @@ class MeasurementsApiController extends Controller
     public function getMeasurementDetails(request $request){
         $type= $request->type;
         $id= $request->id;
-        $details = $this->measurementService->getMeasurementDetails(type, id);
+        $details = $this->measurementService->getMeasurementDetails($type, $id);
         return response()->json($details);
 
     }

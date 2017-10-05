@@ -50,6 +50,7 @@ class MeasurementService
 
     }
 
+
     public function insertPulse($measurements) {
         $result = $this->selectLastId("pulse");
         $id = $result == null ? 1 :  $result->measurementid+1;
