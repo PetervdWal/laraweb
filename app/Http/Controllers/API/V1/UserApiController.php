@@ -58,7 +58,7 @@ class UserApiController extends Controller
      * @param $email
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getUser($email) {
+    public function getUser($userNumber) {
         $user = DB::table('users as u')
             ->select('u.name as Username', 'u.email as Email', 'u.street as Street', 'u.home_number as HomeNumber',
                 'u.phone_number as PhoneNumber', 'u.bsn as BSN', 'u.date_of_birth as DateOfBirth',
@@ -66,7 +66,7 @@ class UserApiController extends Controller
                 'u.insurance_start as InsuranceStart', 'u.insurance_end as InsuranceEnd', 'u.excess as Excess',
                 'h.name as HealthInsuranceCompanyName')
             ->leftJoin('health_insurance_companies as h', 'u.health_insurance_id', '=', 'h.id')
-            ->where('email', $email)->get();
+            ->where('user_number', $userNumber)->get();
         return response()->json($user);
     }
 }
