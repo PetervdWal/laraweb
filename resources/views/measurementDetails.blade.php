@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
     <h3>Measurements</h3>
-    Showing measurement with ID: {{$id}}
+    Showing measurement with Group ID: {{$measurementid}}
 
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
         <thead>
