@@ -52,10 +52,11 @@ class MeasurementService
 
     public function getAllMeasurements($userNumber) {
         $result = DB::table("measurements")
-            ->select('name', 'type', 'created_at as createdAt')
+            ->select('name', 'type', 'created_at as createdAt', 'id')
             ->where("user_number", $userNumber)->get();
         return $result;
     }
+
 
 
     public function insertPulse($measurements, $userNumber) {

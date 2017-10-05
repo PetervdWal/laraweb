@@ -35,15 +35,13 @@ class MeasurementsApiController extends Controller
 
     public function getMeasurementDetails(request $request){
         $type= $request->type;
-        if($type == null){
-
-        } else {
-            $id= $request->id;
-            $details = $this->measurementService->getMeasurementDetails($type, $id);
+        $id= $request->id;
+        $details = $this->measurementService->getMeasurementDetails($type, $id);
+        $data = [];
+        foreach($details as $detail) {
+            array_push($data, $detail->$type);
         }
-
-        return response()->json($details);
-
+        return response()->json($data);
     }
 
     public function getAllMeasurements(Request $request){
