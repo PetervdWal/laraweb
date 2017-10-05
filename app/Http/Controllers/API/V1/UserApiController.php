@@ -51,14 +51,20 @@ class UserApiController extends Controller
 
     public function login(Request $request){
         $result = $this->userService->loginApiUser($request);
-        return $result;
+        if($result){
+            return $result;
+        } else {
+            response("User/password incorrect", 403);
+        }
+
     }
     /**
      * Get the user details
      * @param $userNumber
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getUser($userNumber) {
+    public function getUser(Request $request) {
+        $userNumber = $request->userNumber;
         $user = DB::table('users as u')
             ->select('u.name as userName', 'u.email as email', 'u.street as street', 'u.home_number as homeNumber',
                 'u.phone_number as phoneNumber', 'u.bsn as bsn', 'u.date_of_birth as dateOfBirth',
@@ -66,7 +72,7 @@ class UserApiController extends Controller
                 'u.insurance_start as insuranceStart', 'u.insurance_end as insuranceEnd', 'u.excess as excess',
                 'h.name as healthInsuranceCompanyName')
             ->leftJoin('health_insurance_companies as h', 'u.health_insurance_id', '=', 'h.id')
-            ->where('user_number', $userNumber)->get()->first();
+            ->where('user_number', $userNumber)->first();
         return response()->json($user);
     }
 }
