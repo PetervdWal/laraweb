@@ -49,12 +49,10 @@ class UserApiController extends Controller
         return response()->json($result);
     }
 
-
     public function login(Request $request){
         $result = $this->userService->loginApiUser($request);
         return $result;
     }
-
     /**
      * Get the user details
      * @param $email
