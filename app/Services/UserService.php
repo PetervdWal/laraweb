@@ -43,6 +43,11 @@ class UserService
         return $result;
     }
 
+    public function loginWebUser(Request $request){
+        if(Auth::attempt(['user_number' => $request->userNumber, "password" => $request->password])) {
+            return redirect("/");
+        }
+    }
     /**
      * Logs a user into the system by setting a (expirable) token
      * @param Request $request
@@ -57,16 +62,27 @@ class UserService
 
     private function setToken($userNumber){
         $token = Uuid::generate(4);
-        $result = DB::table('tokens')->insert([
-            "user_number" => $userNumber,
-            "token" => $token,
-            "created_at" => Carbon::now()
-        ]);
+        if(DB::table('tokens')->select("user_number")->get()){
+            DB::table('tokens')
+                ->where("user_number", $userNumber)
+                ->update([
+                    "token" => $token,
+                    "created_at" => Carbon::now()
+                ]);
+            $result = true;
+        }
+        else{
+            $result = DB::table('tokens')->insert([
+                "user_number" => $userNumber,
+                "token" => $token,
+                "created_at" => Carbon::now()
+            ]);
+        }
         if($result){
             return $token;
         }
         else {
-            return false;
+            return response("User already has a token", 403);
         }
     }
 }

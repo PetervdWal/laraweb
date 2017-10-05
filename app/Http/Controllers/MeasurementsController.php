@@ -31,7 +31,7 @@ class MeasurementsController extends Controller
         if (self::$measurementstype == null) {
             self::$measurementstype = self::$BLOOD_PRESSURE;
         }
-        
+
         $measurements = $this->measurementService->getMeasurements(self::$measurementstype);
         $headers = array_keys(get_object_vars($measurements[0]));
 
