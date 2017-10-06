@@ -67,4 +67,11 @@ class MeasurementsApiController extends Controller
         $result =  $this->measurementService->insertEcg($measurements, $userNumber);
         return response()->json($result);
     }
+
+    public function insertBloodPressure(Request $request){
+        $userNumber = $this->userservice->getUserByToken($request->header("token"));
+        $measurements = $request->measurements;
+        $result = $this->measurementService->insertBloodPressure($measurements, $userNumber);
+        return response()->json($result);
+    }
 }

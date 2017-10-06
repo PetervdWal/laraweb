@@ -34,7 +34,7 @@
             <a class="mdl-navigation__link" href="/profile"><i class="material-icons">rowing</i>  My profile</a>
             <a class="mdl-navigation__link" href="/bills"><i class="material-icons">account_balance_wallet</i>  My bills</a>
             <a class="mdl-navigation__link" href="/measurements"><i class="material-icons">insert_chart</i>  My measurements</a>
-            <a class="mdl-navigation__link" href="/auth/login/"><i class="material-icons">exit_to_app</i>  Logout</a>
+            <a class="mdl-navigation__link" href="/auth/logout/"><i class="material-icons">exit_to_app</i>  Logout</a>
         </nav>
     </div>
     <main class="mdl-layout__content">

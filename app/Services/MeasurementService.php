@@ -99,11 +99,45 @@ class MeasurementService
             return response("Insert went wrong", 500);
         }
     }
+    public function insertBloodPressure($measurements, $userNumber) {
+        $result = $this->selectLastId();
+        $id = $result == null ? 1 :  $result->id+1;
+        $title = "Meting " . $id;
+        DB::table("measurements")->insert([
+            "name" => $title,
+            "created_at" => Carbon::now(),
+            "type" => MeasurementsController::$PULSE,
+            "user_number" => $userNumber
+        ]);
+        $dataSet = $this->convertBloodPressureToData("pulse", $measurements, $id);
+
+        $result = DB::table('blood_pressure_measurements')
+            ->insert($dataSet);
+        if($result){
+            return $id;
+        }
+        else {
+            return response("Insert went wrong", 500);
+        }
+    }
     private function convertToData(String $datatype, $doubleArray, $id){
         $dataSet = [];
         foreach($doubleArray as $measurement ){
             $dataSet = [
                 $datatype => $measurement,
+                "measurement_taken_at" => Carbon::now(),
+                "measurementid" => $id
+            ];
+        }
+        return $dataSet;
+    }
+
+    private function convertBloodPressureToData(String $datatype, $doubleArray, $id){
+        $dataSet = [];
+        foreach($doubleArray as $measurement ){
+            $dataSet = [
+                "pressure_upper" => $measurement[0],
+                "pressure_lower" => $measurement[1],
                 "measurement_taken_at" => Carbon::now(),
                 "measurementid" => $id
             ];

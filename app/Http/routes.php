@@ -46,3 +46,4 @@ Route::post('api/v1/measurements/getMeasurements', 'API\V1\MeasurementsApiContro
 Route::post('/api/v1/measurements/getMeasurementDetail' ,'API\V1\MeasurementsApiController@getMeasurementDetails');
 Route::post('api/v1/measurements/postPulse', 'API\V1\MeasurementsApiController@insertPulse')->middleware('apiAuth');
 Route::post('api/v1/measurements/postEcg', 'API\V1\MeasurementsApiController@insertEcg')->middleware('apiAuth');
+Route::post('api/v1/measurements/postBloodPressure', 'API\V1\MeasurementsApiController@insertBloodPressure')->middleware('apiAuth');
