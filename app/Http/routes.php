@@ -27,9 +27,10 @@ Route::get('/dashboard', function () {
     return view('welcome');
 });
 
-Route::get('/measurements','MeasurementsController@showMeasurements');
+Route::get('/measurements','MeasurementsController@showMeasurements')->middleware('auth');;
 Route::post('/measurements','MeasurementsController@setShownMeasurementsType');
-Route::post('/measurementDetails','MeasurementsController@showMeasurementDetails');
+Route::post('/measurementDetails','MeasurementsController@showMeasurementDetails')->middleware('auth');;
+
 Route::post('/login', 'ProfileController@loginWebUser');
 Route::get('/profile', 'ProfileController@showProfile')->middleware('auth');
 Route::post('/profile', 'ProfileController@editUser');

@@ -10,11 +10,10 @@ class MeasurementService
     /**
      * @param String $type
      */
-    public function getMeasurements()
+    public function getMeasurements(String $type)
     {
-        //$user_number = Auth::user()->user_number;
-        $measurements = DB::table('measurements')->select('id','name','type','created_at')->get();
 
+        $measurements = DB::table('measurements')->select('id','name','type','created_at')->where('type', $type)->get();
         return $measurements;
     }
 

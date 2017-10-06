@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Services\MeasurementService;
 use Carbon\Carbon;
+use Khill\Lavacharts\Lavacharts;
+use Khill\Lavacharts\Laravel\LavachartsFacade as Lava;
 
 class MeasurementsController extends Controller
 {
@@ -15,6 +17,7 @@ class MeasurementsController extends Controller
     public static $PULSE = "pulse";
     public static $ECG_WAVES = "ecg";
     public static $measurementstype;
+    public $measurementtype;
     protected $measurementService;
 
     public function __construct(MeasurementService $measurementService)
@@ -24,17 +27,27 @@ class MeasurementsController extends Controller
 
     /**
      * Shows all measurements of one type
-     * TODO: Set it to show measurements of one type, of one user
      */
     public function showMeasurements()
     {
+
+        $type = null;
+        if (!self::$measurementstype) {
+            $type = self::$BLOOD_PRESSURE;
+        } else {
+            $type = self::$measurementstype;
+        }
+
+        //call the function to make the graphs.
+
 //        self::makeTestData();
-        $measurements = $this->measurementService->getMeasurements();
+        $measurements = $this->measurementService->getMeasurements($type);
         if ($measurements) {
             $headers = array_keys(get_object_vars($measurements[0]));
         } else {
             $headers = ["id"];
         }
+
         return view('measurements', ['measurements' => $measurements, 'headers' => $headers]);
     }
 
@@ -63,8 +76,53 @@ class MeasurementsController extends Controller
         } else {
             $headers = ["id"];
         }
+
+        $this->createGraphs($details, $measurementid);
+
         return view('measurementDetails', ['details' => $details, 'headers' => $headers,
             'measurementid' => $measurementid]);
+    }
+
+    private function createGraphs($data, $measurementid)
+    {
+        $measurement = DB::table('measurements')->where('id', $measurementid)->first();
+        $type = $measurement->type;
+
+        $graphDatatable = Lava::Datatable();
+        $graphDatatable->addDateTimeColumn('Created');
+        if ($type == self::$BLOOD_PRESSURE) {
+            $graphDatatable
+                ->addNumberColumn('Highest Pressure')
+                ->addNumberColumn('Lowest Pressure');
+
+            foreach ($data as $datapoint) {
+                $graphDatatable->addRow([$datapoint->measurement_taken_at,
+                    $datapoint->pressure_upper, $datapoint->pressure_lower]);
+            }
+        }
+        if ($type == self::$PULSE) {
+            $graphDatatable
+                ->addNumberColumn('Pulse');
+
+            foreach ($data as $datapoint) {
+                $graphDatatable->addRow([$datapoint->measurement_taken_at,
+                    $datapoint->pulse]);
+            }
+        }
+        if ($type == self::$ECG_WAVES) {
+            $graphDatatable
+                ->addNumberColumn('ECG Wave');
+
+            foreach ($data as $datapoint) {
+                $graphDatatable->addRow([$datapoint->measurement_taken_at,
+                    $datapoint->ECG_waves]);
+            }
+        }
+
+        Lava::LineChart('Graph', $graphDatatable, [
+            'title' => 'Measured data to time'
+        ]);
+        return;
     }
 
     private static function makeTestData()

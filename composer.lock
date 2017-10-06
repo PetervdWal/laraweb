@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "88e73acde60bab5dc1b068886ec35d77",
+    "content-hash": "8e90ecd05a7c4c3009059808095619e9",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -433,40 +433,30 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.6.2",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "1a4ee83a5a709555f2c6f9057a3aacf892451c7e"
+                "reference": "fec965d330c958e175c39e61c3f6751955af32d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1a4ee83a5a709555f2c6f9057a3aacf892451c7e",
-                "reference": "1a4ee83a5a709555f2c6f9057a3aacf892451c7e",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fec965d330c958e175c39e61c3f6751955af32d0",
+                "reference": "fec965d330c958e175c39e61c3f6751955af32d0",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": "^2.7.1",
-                "ext-pdo": "*",
-                "php": "^7.1"
+                "doctrine/common": "~2.4",
+                "php": ">=5.3.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.4.6",
-                "phpunit/phpunit-mock-objects": "!=3.2.4,!=3.2.5",
-                "symfony/console": "2.*||^3.0"
+                "phpunit/phpunit": "3.7.*",
+                "symfony/console": "~2.0"
             },
             "suggest": {
-                "symfony/console": "For helpful console commands such as SQL execution and import of files."
+                "symfony/console": "Allows use of the command line interface"
             },
-            "bin": [
-                "bin/doctrine-dbal"
-            ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Doctrine\\DBAL\\": "lib/"
@@ -478,20 +468,23 @@
             ],
             "authors": [
                 {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com",
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com",
+                    "homepage": "http://www.instaclick.com"
+                },
+                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
                 {
                     "name": "Benjamin Eberlei",
                     "email": "kontakt@beberlei.de"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com"
                 }
             ],
             "description": "Database Abstraction Layer",
@@ -502,7 +495,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-08-28T11:02:56+00:00"
+            "time": "2014-01-01T16:43:57+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -2574,6 +2567,96 @@
                 "test"
             ],
             "time": "2015-05-11T14:41:42+00:00"
+        },
+        {
+            "name": "khill/lavacharts",
+            "version": "3.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kevinkhill/lavacharts.git",
+                "reference": "ab4aa8d8bc3d68d0e86b3d59383a0aaee384c6f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/ab4aa8d8bc3d68d0e86b3d59383a0aaee384c6f5",
+                "reference": "ab4aa8d8bc3d68d0e86b3d59383a0aaee384c6f5",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "~1.14",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/support": "5.0.*",
+                "mockery/mockery": "~0.9",
+                "mybuilder/phpunit-accelerator": "~1.1",
+                "phpunit/phpunit": "~4.5",
+                "satooshi/php-coveralls": "~1.0",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "suggest": {
+                "khill/datatableplus": "Adds extra features to DataTables such as csv and laravel collection parsing."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Khill\\Lavacharts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Hill",
+                    "email": "kevinkhill@gmail.com",
+                    "role": "Creator"
+                },
+                {
+                    "name": "deringer",
+                    "homepage": "https://github.com/deringer",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "stevebauman",
+                    "homepage": "https://github.com/stevebauman",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "rajivseelam",
+                    "homepage": "https://github.com/rajivseelam",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "tobias-kuendig",
+                    "homepage": "https://github.com/tobias-kuendig",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Stonos",
+                    "homepage": "https://github.com/Stonos",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "MicahKV",
+                    "email": "micah138@yahoo.com",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "SendDerek",
+                    "homepage": "https://github.com/SendDerek",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "PHP wrapper library for the Google Chart API",
+            "homepage": "http://lavacharts.com",
+            "keywords": [
+                "charts",
+                "google",
+                "graphs"
+            ],
+            "time": "2017-03-14T13:36:30+00:00"
         },
         {
             "name": "mockery/mockery",

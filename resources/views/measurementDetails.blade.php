@@ -1,5 +1,9 @@
 @extends('layouts.default')
 @section('content')
+
+    <div id="graph"></div>
+    <?= Lava::render('LineChart', 'Graph', 'graph') ?>
+
     <h3>Measurements</h3>
     Showing measurement with Group ID: {{$measurementid}}
 
