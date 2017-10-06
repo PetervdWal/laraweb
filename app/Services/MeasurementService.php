@@ -121,19 +121,20 @@ class MeasurementService
         }
     }
     private function convertToData(String $datatype, $doubleArray, $id){
-        $dataSet = [];
+        $array = [];
         foreach($doubleArray as $measurement ){
-            $dataSet = [
+            $dataSet[] = [
                 $datatype => $measurement,
                 "measurement_taken_at" => Carbon::now(),
                 "measurementid" => $id
             ];
+            $array += $dataSet;
         }
-        return $dataSet;
+        return $array;
     }
 
     private function convertBloodPressureToData(String $datatype, $doubleArray, $id){
-        $dataSet = [];
+        $array = [];
         foreach($doubleArray as $measurement ){
             $dataSet = [
                 "pressure_upper" => $measurement[0],
@@ -141,8 +142,9 @@ class MeasurementService
                 "measurement_taken_at" => Carbon::now(),
                 "measurementid" => $id
             ];
+            $array += $dataSet;
         }
-        return $dataSet;
+        return $array;
     }
 
 

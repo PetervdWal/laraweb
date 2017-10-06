@@ -64,6 +64,7 @@ class MeasurementsApiController extends Controller
     public function insertEcg(Request $request){
         $userNumber = $this->userservice->getUserByToken($request->header("token"));
         $measurements =$request->measurements;
+
         $result =  $this->measurementService->insertEcg($measurements, $userNumber);
         return response()->json($result);
     }
